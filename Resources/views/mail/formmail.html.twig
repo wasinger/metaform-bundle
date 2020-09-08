@@ -1,0 +1,8 @@
+{% apply inline_css(source('@WasingerMetaform/mail/mail.scss')) %}
+
+<h1>{{ subject }}</h1>
+<div>{{ text_pre|raw}}</div>
+<div>{{ content|raw }}</div>
+<div>{{ text_post|raw }}</div>
+
+{% endapply %}

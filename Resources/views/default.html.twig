@@ -1,0 +1,37 @@
+{% extends base_template %}
+{% form_theme form '@WasingerMetaform/form/theme.html.twig' %}
+
+{% block title %}{{ title|default('Form') }}{% endblock %}
+
+{% block body %}
+            {% if form.vars.submitted and not form.vars.valid %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    The form contains errors. Please check your input.
+                    {{ form_errors(form) }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% else %}
+                {% if text_pre  %}
+                    {% if text_pre_is_html  %}
+                        <div>{{ text_pre|raw }}</div>
+                    {% else %}
+                        <p>{{ text_pre|nl2br }}</p>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {{ form_start(form) }}
+
+            {{ form_rest(form) }}
+
+            {{ form_end(form) }}
+
+    {% if text_post  %}
+        {% if text_post_is_html  %}
+            <div>{{ text_post|raw }}</div>
+        {% else %}
+            <p>{{ text_post|nl2br }}</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

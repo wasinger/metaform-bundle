@@ -1,0 +1,23 @@
+{% extends base_template %}
+
+{% block title %}{{ title|default('Form') }}{% endblock %}
+
+{% block body %}
+    {% if data and data is not empty %}
+        {% if text_pre_submitted  %}
+            {% if text_pre_submitted_is_html  %}
+                <div>{{ text_pre_submitted|raw }}</div>
+            {% else %}
+                <p>{{ text_pre_submitted|nl2br }}</p>
+            {% endif %}
+        {% endif %}
+    <div class="formdata">{{ data|raw }}</div>
+        {% if text_post_submitted  %}
+            {% if text_post_submitted_is_html  %}
+                <div>{{ text_post_submitted|raw }}</div>
+            {% else %}
+                <p>{{ text_post_submitted|nl2br }}</p>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

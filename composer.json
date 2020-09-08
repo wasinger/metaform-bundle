@@ -1,0 +1,27 @@
+{
+    "name": "wasinger/metaform-bundle",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Christoph Singer",
+            "email": "singer@webagentur72.de"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5",
+        "ext-json": "*",
+        "symfony/form": "^5",
+        "symfony/mailer": "^5",
+        "symfony/orm-pack": "^1",
+        "soundasleep/html2text": "^1.1",
+        "twig/cssinliner-extra": "^3.0",
+        "symfony/yaml": "*",
+        "symfony/validator": "^5",
+        "symfony/translation": "^5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wasinger\\MetaformBundle\\": ""
+        }
+    }
+}

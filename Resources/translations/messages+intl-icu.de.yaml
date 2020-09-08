@@ -1,0 +1,5 @@
+'<b>dev environment</b>: in production, this form is currently not shown.': '<b>Entwicklungsumgebung</b>: Auf dem Produktivsystem wird dieses Formular nicht angezeigt.'
+'Form {name} is disabled.': 'Formular {name} ist deaktiviert.'
+'Form {name} will be available from {date, date} {date, time, short}': 'Formular {name} ist verfügbar ab {date, date} {date, time, short}.'
+'Form {name} was available until {date, date} {date, time, short}': 'Formular {name} war verfügbar bis {date, date} {date, time, short}.'
+'This form is not yet available, or not available any more.': 'Dieses Formular ist entweder noch nicht oder nicht mehr verfügbar.'

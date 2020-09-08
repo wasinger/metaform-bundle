@@ -1,0 +1,27 @@
+services:
+    Wasinger\MetaformBundle\MetaformProcessor:
+        autowire: true
+        arguments:
+            $uploaddir: '%wasinger_metaform.upload_dir%'
+        tags:
+            - { name: monolog.logger }
+
+    Wasinger\MetaformBundle\MetaformLoader:
+        autowire: true
+        arguments:
+            $configdir: '%wasinger_metaform.form_dir%'
+            $cachedir: '%kernel.cache_dir%/metaform'
+
+    Wasinger\MetaformBundle\LoggingMailer:
+        autowire: true
+        tags:
+            - { name: monolog.logger, channel: mail }
+
+    Wasinger\MetaformBundle\Controller\BaseFormController:
+        autowire: true
+        autoconfigure: true
+        tags: ['controller.service_arguments']
+        arguments:
+            $env: '%kernel.environment%'
+
+

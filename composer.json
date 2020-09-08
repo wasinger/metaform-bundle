@@ -1,6 +1,7 @@
 {
     "name": "wasinger/metaform-bundle",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Christoph Singer",

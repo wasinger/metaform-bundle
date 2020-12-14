@@ -81,7 +81,7 @@ class BaseFormController extends AbstractController
             }
         } catch (FormNotAvailableException $e) {
             if ($this->env == 'prod' && !$options['debug']) {
-                throw new FormNotAvailableException("This form is not yet available, or not available any more.", null, null, $e);
+                throw new FormNotAvailableException("This form is not yet available, or not available any more.", [], 0, $e);
             } else {
                 $this->addFlash('warning', $this->trans('<b>dev environment</b>: in production, this form is currently not shown.') . ' ' . $this->trans($e->getMessageKey(), $e->getMessageData()));
             }

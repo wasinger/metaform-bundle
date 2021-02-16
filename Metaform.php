@@ -268,6 +268,9 @@ class Metaform
                 break;
             case 'number':
                 $fieldtype = NumberType::class;
+                if (!isset($fielddef['options']['html5'])) {
+                    $options['html5'] = true; // set default to html5
+                }
                 break;
             case 'url':
                 $fieldtype = UrlType::class;

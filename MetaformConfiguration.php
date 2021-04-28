@@ -62,6 +62,7 @@ class MetaformConfiguration implements ConfigurationInterface
             ->scalarNode('type')->defaultValue(TextType::class)->end()
             ->booleanNode('required')->defaultFalse()->end()
             ->scalarNode('label')->end()
+            ->scalarNode('maxlength')->end()
             ->arrayNode('choices')
                 ->scalarPrototype()->end()
             ->end()

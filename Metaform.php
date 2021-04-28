@@ -2,6 +2,7 @@
 
 namespace Wasinger\MetaformBundle;
 
+use Symfony\Component\Validator\Constraints\Length;
 use Wasinger\MetaformBundle\Form\CustomChoiceType;
 use Wasinger\MetaformBundle\Form\HeadingType;
 use Wasinger\MetaformBundle\Form\HtmltextType;
@@ -217,6 +218,12 @@ class Metaform
         if (!empty($fielddef['required'])) {
             $options['constraints'][] = new NotBlank();
         }
+
+        if (!empty($fielddef['maxlength'])) {
+            $options['constraints'][] = new Length(['max' => $fielddef['maxlength']]);
+            $options['attr']['maxlength'] = $fielddef['maxlength'];
+        }
+        
 
         switch ($type) {
             case 'checkboxgroup':

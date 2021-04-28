@@ -220,7 +220,12 @@ class Metaform
         }
 
         if (!empty($fielddef['maxlength'])) {
-            $options['constraints'][] = new Length(['max' => $fielddef['maxlength']]);
+            $options['constraints'][] = new Length([
+                'max' => $fielddef['maxlength'],
+                'normalizer' => function($v) {
+                    return trim(str_replace("\r\n", "\n", $v)); // DOS-Zeilenenden ersetzen, da die sonst als zwei Zeichen gezählt werden, im Browser aber nur als 1!!!
+                }
+            ]);
             $options['attr']['maxlength'] = $fielddef['maxlength'];
         }
         

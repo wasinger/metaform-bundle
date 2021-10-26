@@ -2,6 +2,7 @@
 
 namespace Wasinger\MetaformBundle;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\Length;
 use Wasinger\MetaformBundle\Form\CustomChoiceType;
 use Wasinger\MetaformBundle\Form\HeadingType;
@@ -304,6 +305,11 @@ class Metaform
                 $fieldtype = FileType::class;
                 $options['label_attr'] = ['data-browse' => 'Datei auswählen...'];
                 unset($options['filename']);
+                break;
+            case 'date':
+                $fieldtype = DateType::class;
+                if (!isset($options['widget'])) $options['widget'] = 'single_text';
+                if (!isset($options['input'])) $options['input'] = 'string';
                 break;
             case 'text':
                 $fieldtype = TextType::class;

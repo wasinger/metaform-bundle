@@ -3,6 +3,7 @@
 namespace Wasinger\MetaformBundle;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Validator\Constraints\Length;
 use Wasinger\MetaformBundle\Form\CustomChoiceType;
 use Wasinger\MetaformBundle\Form\HeadingType;
@@ -308,6 +309,11 @@ class Metaform
                 break;
             case 'date':
                 $fieldtype = DateType::class;
+                if (!isset($options['widget'])) $options['widget'] = 'single_text';
+                if (!isset($options['input'])) $options['input'] = 'string';
+                break;
+            case 'time':
+                $fieldtype = TimeType::class;
                 if (!isset($options['widget'])) $options['widget'] = 'single_text';
                 if (!isset($options['input'])) $options['input'] = 'string';
                 break;

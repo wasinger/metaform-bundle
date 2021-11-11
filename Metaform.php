@@ -316,6 +316,7 @@ class Metaform
                 $fieldtype = TimeType::class;
                 if (!isset($options['widget'])) $options['widget'] = 'single_text';
                 if (!isset($options['input'])) $options['input'] = 'string';
+                if (!isset($options['input_format'])) $options['input_format'] = 'H:i';
                 break;
             case 'text':
                 $fieldtype = TextType::class;

@@ -154,7 +154,8 @@ class Metaform
                 foreach ($affirmations as $akey => $alabel) {
                     $fb->add($akey, CheckboxType::class, [
                         'label' => $alabel,
-                        'required' => true
+                        'required' => true,
+                        'label_html' => true
                     ]);
                 }
             }

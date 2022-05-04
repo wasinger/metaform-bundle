@@ -219,10 +219,11 @@ class MetaformProcessor
             if ($metaform->getOption('response_text_only')) {
                 $successmessage = $metaform->getOption('response_text_only');
             } else {
-                $successmessage = 'Ihre Daten wurden übermittelt und unter der Bearbeitungsnummer ' . $this->submission_id . ' erfasst. ';
+//                $successmessage = 'Ihre Daten wurden übermittelt und unter der Bearbeitungsnummer ' . $this->submission_id . ' erfasst.';
+                $successmessage = 'Die eingegebenen Daten wurden erfolgreich übermittelt.';
             }
             if ($mailconfig->copy_to_sender) {
-                $successmessage .= 'Sie erhalten eine Kopie der übermittelten Daten per E-Mail.';
+                $successmessage .= ' Sie erhalten eine Kopie der übermittelten Daten per E-Mail.';
             }
             $success = true;
             $this->addFlash('success', $successmessage);
@@ -245,10 +246,10 @@ class MetaformProcessor
             $email = (new TemplatedEmail())
                 ->from(...$mailconfig->from)
                 ->to($sender_email)
-                ->subject($subject)
+                ->subject($mailconfig->subject)
                 ->htmlTemplate('@WasingerMetaform/mail/formmail.html.twig')
                 ->context([
-                    'subject' => $subject,
+                    'subject' => $mailconfig->subject,
                     'text_pre' => TextUtil::asHtml($mailconfig->text_pre_sender, 'p'),
                     'content' => $html_sender,
                     'text_post' => TextUtil::asHtml($mailconfig->text_post_sender, 'p')

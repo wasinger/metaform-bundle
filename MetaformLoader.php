@@ -42,6 +42,19 @@ class MetaformLoader
         $this->formfactory = $formfactory;
     }
 
+    public function listForms(): array
+    {
+        $forms = [];
+        foreach (new \DirectoryIterator($this->configdir) as $fileInfo) {
+            /** @var \SplFileInfo $fileInfo */
+            $ext = $fileInfo->getExtension();
+            if ($ext == 'yml' || $ext == 'yaml') {
+                $forms[] = $fileInfo->getBasename('.' . $ext);
+            }
+        }
+        return $forms;
+    }
+
     /**
      * Load a metaform instance specified by $form_id
      *

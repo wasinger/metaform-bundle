@@ -160,7 +160,7 @@ class Metaform
                 }
             }
 
-            $fb->add('submitbutton', SubmitType::class, ['label' => 'Absenden']);
+            $fb->add('submitbutton', SubmitType::class, ['label' => ($this->getOption('submitbutton_label') ?? 'Absenden')]);
 
             $this->built_form = $fb->getForm();
         }

@@ -90,6 +90,7 @@ class MetaformConfiguration implements ConfigurationInterface
                 ->scalarNode('text_post')->end()
                 ->scalarNode('valid_from')->end()
                 ->scalarNode('valid_until')->end()
+                ->scalarNode('submitbutton_label')->end()
                 ->booleanNode('horizontal_data_table')->defaultFalse()->end()
                 ->scalarNode('text_pre_submitted')->end()
                 ->scalarNode('text_post_submitted')->end()

@@ -1,6 +1,8 @@
 <?php
 namespace Wasinger\MetaformBundle;
 
+use Isometriks\Bundle\SpamBundle\Form\Extension\Spam\Type\FormTypeHoneypotExtension;
+use Isometriks\Bundle\SpamBundle\Form\Extension\Spam\Type\FormTypeTimedSpamExtension;
 use Wasinger\MetaformBundle\Exceptions\FormNotFoundException;
 use Wasinger\MetaformBundle\Exceptions\FormParserException;
 use Symfony\Component\Config\ConfigCache;
@@ -28,6 +30,10 @@ class MetaformLoader
      */
     private $formfactory;
 
+    private array $options = [
+        'isometriks_spam_honeypot' => false,
+        'isometriks_spam_timed' => false
+    ];
     /**
      * YamlFormConfigurator constructor.
      *
@@ -40,6 +46,11 @@ class MetaformLoader
         $this->configdir = $configdir;
         $this->cachedir = $cachedir;
         $this->formfactory = $formfactory;
+    }
+
+    public function setOption(string $name, $value): void
+    {
+        $this->options[$name] = $value;
     }
 
     public function listForms(): array
@@ -78,10 +89,17 @@ class MetaformLoader
         } else {
             $processedConfiguration = require $cachepath;
         }
+        $fboptions = [];
+        if ($this->options['isometriks_spam_honeypot'] && class_exists(FormTypeHoneypotExtension::class)) {
+            $fboptions['honeypot'] = true;
+        }
+        if ($this->options['isometriks_spam_timed'] && class_exists(FormTypeTimedSpamExtension::class)) {
+            $fboptions['timed_spam'] = true;
+        }
         return new Metaform(
             $form_id,
             $processedConfiguration,
-            $this->formfactory->createBuilder(FormType::class, null, [])
+            $this->formfactory->createBuilder(FormType::class, null, $fboptions)
         );
     }
 

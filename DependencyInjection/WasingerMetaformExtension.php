@@ -29,6 +29,14 @@ class WasingerMetaformExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
         );
         $loader->load('services.yml');
+
+        $def = $container->getDefinition(\Wasinger\MetaformBundle\MetaformLoader::class);
+        if (!empty($config['isometriks_spam_honeypot'])) {
+            $def->addMethodCall('setOption', ['isometriks_spam_honeypot', true]);
+        }
+        if (!empty($config['isometriks_spam_timed'])) {
+            $def->addMethodCall('setOption', ['isometriks_spam_timed', true]);
+        }
     }
 
 }

@@ -22,6 +22,8 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('form_dir')->isRequired()->end()
                 ->scalarNode('upload_dir')->isRequired()->end()
+                ->booleanNode('isometriks_spam_honeypot')->defaultFalse()->end()
+                ->booleanNode('isometriks_spam_timed')->defaultFalse()->end()
             ->end()
         ;
 
